@@ -1,4 +1,6 @@
-This is the official repository for the re-imagined [Solomon Islands National University](https://sinu.edu.sb) website. It is in active development (jan 2024 - aug 2024).
+# Sinu Website 
+
+This is the official repository for the re-imagined [Solomon Islands National University](https://sinu.edu.sb) website. It is in active development (March 2024 - present).
 
 ## Project Architecture
 
@@ -9,9 +11,9 @@ There are two parts to this project:
 
 Documentation to work in both parts of this project will be made available soon.
 
-## Does it run on my machine?
+## Runs on my machine?
 
-Yes, this project fully leverages [Docker](https://www.docker.com/) for its functionality. Currently, it utilizes four containers to run the website in its current state. Below, you'll find instructions on how to set it up on your local machine.
+Yes, this project fully leverages [Docker](https://www.docker.com/). Currently, it utilizes four containers to run the website in its current state. Below, you'll find instructions on how to set it up on your local machine.
 
 ps. this README.md will be updated as the docker architecture expands.
 
@@ -40,10 +42,7 @@ docker compose build
 docker compose up
 ```
 
-Access the frontend on [http://localhost:3000](http://localhost:3000).
-
-Access the backend on [http://localhost](http://localhost:3000).
-
+Peek the website: [http://localhost](http://localhost).
 
 ## Extras For Collaborators
 Check out the documentations for [Next.js](https://nextjs.org/docs) and [tailwind CSS](https://tailwindcss.com/docs/installation).
