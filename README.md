@@ -1,6 +1,6 @@
-# Sinu Website 
+# SINU Website - Official
 
-This is the official repository for the re-imagined [Solomon Islands National University](https://sinu.edu.sb) website. It is in active development (March 2024 - present).
+This is the repository for the re-imagined [Solomon Islands National University](https://sinu.edu.sb) website. It is in active development (March 2024 - present).
 
 ## Project Architecture
 
