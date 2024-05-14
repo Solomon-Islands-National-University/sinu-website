@@ -20,7 +20,18 @@ ps. this README.md will be updated as the docker architecture expands.
 
 prereq: make sure you have Docker installed.
 
-Clone this repo and run the following commands
+1. Clone this repository and navigate to the root.
+
+2. Create a .env file and fill these variables.
+
+`DB_NAME=your_db_name`
+
+`DB_USER=your_db_user`
+
+`DB_PASSWORD=your_db_password`
+
+
+3. Run the following commands
 
 ```bash
 docker compose build
