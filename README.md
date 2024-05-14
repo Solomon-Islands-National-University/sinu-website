@@ -35,7 +35,7 @@ Access the backend on [http://localhost](http://localhost:3000).
 
 
 ## Extras For Collaborators
-Check out the documentations for [Next.js](https://nextjs.org/docs) and [tailwind](https://tailwindcss.com/docs/installation) tailwind.
+Check out the documentations for [Next.js](https://nextjs.org/docs) and [tailwind CSS](https://tailwindcss.com/docs/installation).
 
 Check out the documentation for [Wagtail](https://docs.wagtail.org/en/stable/).
 
