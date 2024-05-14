@@ -32,6 +32,9 @@ RUN chown wagtail:wagtail /app
 # Copy the source code of the project into the container.
 COPY --chown=wagtail:wagtail . .
 
+# Set permissions for /staticfiles directory
+RUN mkdir -p /staticfiles && chown -R wagtail:wagtail /staticfiles
+
 # Use user "wagtail" to run the build commands below and the server itself.
 USER wagtail
 
