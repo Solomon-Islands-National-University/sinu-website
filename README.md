@@ -11,7 +11,7 @@ Documentation to work in both parts of this project will be made available soon.
 
 ## Does it run on my machine?
 
-Yes, this project fully leverages [Docker](https://www.docker.com/) for its functionality. Currently, it utilizes three containers to run the website in its current state. Below, you'll find instructions on how to set it up on your local machine.
+Yes, this project fully leverages [Docker](https://www.docker.com/) for its functionality. Currently, it utilizes four containers to run the website in its current state. Below, you'll find instructions on how to set it up on your local machine.
 
 ps. this README.md will be updated as the docker architecture expands.
 
