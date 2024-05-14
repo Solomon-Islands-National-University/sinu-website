@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+
+  frontend:
+    container_name: sinuweb-frontend
+    image: sinuweb/nextjsfrontend
+    build:
+      context: ./sinuweb-frontend
+      dockerfile: Dockerfile
+    ports: 
+      - 3000:3000
+    depends_on:
+      - backend
+
+  backend:
+    container_name: sinuweb-backend
+    image: sinuweb/wagtailbackend
+    build:
+      context: ./sinuweb_hdl_cms
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - 80:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.3
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    env_file:
+      - .env

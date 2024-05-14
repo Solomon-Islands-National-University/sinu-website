@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --blue-gradient: linear-gradient(45deg, #1C3E49 55%, #178BB0);
+  --blue-opaque: rgba(19, 119, 151, 0.35);
+  --breakpoint-xl-large: '1440px';
+  --breakpoint-large: '1024px';
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  /* background-color: #1C3E49; */
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text; /* For Safari/Chrome */
+  color: transparent;
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
