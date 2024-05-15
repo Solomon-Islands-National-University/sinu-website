@@ -10,6 +10,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - backend-static:/staticfiles
+      - backend-media:/mediafiles
     depends_on:
       - frontend
 
@@ -19,8 +20,6 @@ services:
     build:
       context: ./sinuweb-frontend
       dockerfile: Dockerfile
-    ports: 
-      - 3000:3000
     depends_on:
       - backend
 
@@ -32,10 +31,9 @@ services:
       dockerfile: Dockerfile
     env_file:
       - .env
-    ports:
-      - 8000:8000
     volumes:
       - backend-static:/staticfiles
+      - backend-media:/mediafiles
     depends_on:
       - db
 
@@ -48,6 +46,10 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     env_file:
       - .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
 
 volumes:
   backend-static:
+  backend-media:
+  db-data:
