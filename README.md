@@ -2,23 +2,25 @@
 
 This is the repository for the re-imagined [Solomon Islands National University](https://sinu.edu.sb) website. It is in active development (March 2024 - present).
 
-## Project Architecture
+## Codebase Structure
 
-There are two parts to this project:
+Codebases maintained in this repository:
 
 1. A [wagtail](https://docs.wagtail.org/en/stable/)-based headless CMS backend (utilIzing wagtail's V2 API).
 2. A frontend built with [Nextjs](https://nextjs.org) and [tailwind](https://tailwindcss.com/).
 
-Documentation to work in both parts of this project will be made available soon.
+## Container Architecture
 
-## Runs on my machine?
+This project fully leverages docker containerization. 
 
-Yes, this project fully leverages [Docker](https://www.docker.com/). Currently, it utilizes four containers to run the website in its current state. Below, you'll find instructions on how to set it up on your local machine.
+There are four services (a.k.a. containers) specified in the root `docker-compose.yml` file.
 
-ps. this README.md will be updated as the docker architecture expands.
+1. `nginx` - serves as a proxy for the application.
+2. `db` - the database container.
+3. `frontend` - the nextjs frontend client.
+4. `backend` - the wagtail backend.
 
-
-### steps
+## Dev Setup
 
 prereq: make sure you have Docker installed.
 
@@ -26,12 +28,11 @@ prereq: make sure you have Docker installed.
 
 2. Create a .env file and fill these variables.
 
-`DB_NAME=your_db_name`
-
-`DB_USER=your_db_user`
-
-`DB_PASSWORD=your_db_password`
-
+```bash
+DB_NAME=your_db_name
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+```
 
 3. Run the following commands
 
@@ -39,10 +40,14 @@ prereq: make sure you have Docker installed.
 docker compose build
 ```
 ```bash
-docker compose up
+docker compose up -d
 ```
 
 Peek the website: [http://localhost](http://localhost).
+
+## Documentation
+
+Refer to the `README.md` in each codebase for instructions on how to work within the codebase.
 
 ## Extras For Collaborators
 Check out the documentations for [Next.js](https://nextjs.org/docs) and [tailwind CSS](https://tailwindcss.com/docs/installation).
