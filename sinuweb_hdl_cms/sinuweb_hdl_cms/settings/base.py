@@ -154,7 +154,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = '/staticfiles/'
 STATIC_URL = "/static/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = '/mediafiles/'
 MEDIA_URL = "/media/"
 
 # Default storage settings, with the staticfiles storage updated.
