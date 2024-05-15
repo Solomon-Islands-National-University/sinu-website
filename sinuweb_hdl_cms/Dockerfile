@@ -34,9 +34,12 @@ COPY --chown=wagtail:wagtail . .
 
 # Set permissions for /staticfiles directory
 RUN mkdir -p /staticfiles && chown -R wagtail:wagtail /staticfiles
+RUN mkdir -p /mediafiles && chown -R wagtail:wagtail /mediafiles
 
 # Use user "wagtail" to run the build commands below and the server itself.
 USER wagtail
+
+EXPOSE 8000
 
 # Collect static files.
 RUN python manage.py collectstatic --noinput --clear
