@@ -1,0 +1,53 @@
+services:
+
+  nginx:
+    container_name: sinuweb-nginx
+    image: nginx:1.25.5
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - backend-static:/staticfiles
+      - backend-media:/mediafiles
+    depends_on:
+      - frontend
+
+  frontend:
+    container_name: sinuweb-frontend
+    image: sinuweb/nextjsfrontend
+    build:
+      context: ./sinuweb-frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+
+  backend:
+    container_name: sinuweb-backend
+    image: sinuweb/wagtailbackend
+    build:
+      context: ./sinuweb_hdl_cms
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - backend-static:/staticfiles
+      - backend-media:/mediafiles
+    depends_on:
+      - db
+
+  db:
+    container_name: sinuweb-db
+    image: postgres:16.3
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    env_file:
+      - .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  backend-static:
+  backend-media:
+  db-data:
