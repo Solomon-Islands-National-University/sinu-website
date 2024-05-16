@@ -1,6 +1,15 @@
-This is the frontend project for the new [SINU](https://sinu.edu.sb) website being actively developed with [Next.js](https://nextjs.org/), and [tailwindcss](https://tailwindcss.com/) for styling.
+## codebase - frontend
+Frontend codebase of the website.
 
-## Getting Started
+## Setting up a local dev environment.
+
+Navigate to `/sinuweb-frontend`.
+
+Install packages
+
+```bash
+npm init
+```
 
 Run the development server:
 
@@ -10,17 +19,20 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## New Collaborator? Here's some starters.
+## Codebase Folder Structure
 
-- All pages are in the `app` folder. 
-- The default page (home page) is the `page.tsx` right under the `app`.
-- The default `/news` page is the `page.tsx` right under the `news` folder.
-- All pages uses and reuses components from the `components` folder.
-- The `ui` folder holds UI components.
+This codebase implements filesystem routing.
+
+- `app` - the base route. Folders under here are child routes.
+- `ui` - Holds custom reusable UI components.
+- `components` - main components folder.
+- `lib` - functions for fetching the rest API.
+- `data` - dummy data.
 
 
+## Extras For Collaborators
 
-Check out the documentations for [Next.js](https://nextjs.org/docs) and [tailwind](https://tailwindcss.com/docs/installation).
+Check out the documentations for [Next.js](https://nextjs.org/docs) and [tailwind CSS](https://tailwindcss.com/docs/installation).
 
 
 
