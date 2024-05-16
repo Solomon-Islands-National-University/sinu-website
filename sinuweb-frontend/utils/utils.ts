@@ -1,4 +1,4 @@
-import { Link, LinkGroup } from "@/interface/footer/footer-interfaces";
+
 
 function getFirst20Words(str: string) {
     // Match the first 20 words using a regular expression
@@ -14,18 +14,20 @@ function formatDate(dateString: string) {
 }
 
 function cleanData(data: any){
-    const linkGroups: LinkGroup[] = [];
+    const linkGroups: any[] = [];
     
     data.link_groups.forEach((linkGroup: any, index: number) => {
 
-        let newLinkGroup: LinkGroup = {};
+        let newLinks: any[] = []
+
+        let newLinkGroup = {id: 0, groupTitle: '', links: newLinks };
         newLinkGroup['id'] = index;
         newLinkGroup['groupTitle'] = linkGroup.title;
 
-        let newLinks: Link[] = []
+        
 
         linkGroup.footer_links.forEach((link: any, index: number) => {            
-            let newLink: Link = {};
+            let newLink = {id: 0, linkTitle: '', pageApiEndpoint: '', externalUrl: ''};
             newLink['id'] = index;
             newLink['linkTitle'] = link.link_title;
             newLink['pageApiEndpoint'] = link.page_link.meta.detail_url;
