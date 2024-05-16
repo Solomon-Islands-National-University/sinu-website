@@ -28,6 +28,7 @@ This codebase implements filesystem routing.
 - `components` - main components folder.
 - `lib` - functions for fetching the rest API.
 - `data` - dummy data.
+- `utils` - helper functions.
 
 
 ## Extras For Collaborators
