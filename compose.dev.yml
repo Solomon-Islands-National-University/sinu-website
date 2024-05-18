@@ -18,6 +18,14 @@ services:
     build:
       context: ./sinuweb-frontend
       dockerfile: .docker/dev/Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - WATCHPACK_POLLING=true # for windows users - Sol from @Kobe E
+    volumes:
+      - ./sinuweb-frontend:/src
+      - /src/node_modules
+    command: ["npm", "run", "dev"]
     depends_on:
       - backend
 
