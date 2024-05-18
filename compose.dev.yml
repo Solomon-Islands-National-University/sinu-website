@@ -14,16 +14,16 @@ services:
 
   frontend:
     container_name: sinuweb-frontend
-    image: sinuweb/nextjsfrontend
+    image: sinuweb/nextjsfrontend:dev
     build:
       context: ./sinuweb-frontend
-      dockerfile: Dockerfile
+      dockerfile: .docker/dev/Dockerfile
     depends_on:
       - backend
 
   backend:
     container_name: sinuweb-backend
-    image: sinuweb/wagtailbackend
+    image: sinuweb/wagtailbackend:dev
     build:
       context: ./sinuweb_hdl_cms
       dockerfile: Dockerfile
