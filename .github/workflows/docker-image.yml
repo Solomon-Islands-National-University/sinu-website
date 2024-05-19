@@ -9,6 +9,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      DB_NAME: db_wagtail
+      DB_USER: wagtail_admin
+      DB_PASSWORD: p4ssw03d
 
     steps:
     - uses: actions/checkout@v4
