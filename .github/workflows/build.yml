@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: build stage
 
 on:
   pull_request:
