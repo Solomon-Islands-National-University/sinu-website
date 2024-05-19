@@ -1,4 +1,4 @@
-name: another test
+name: Build and pushing images to repository
 
 on:
   push:
