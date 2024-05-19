@@ -3,7 +3,7 @@ import Title from "@/ui/title";
 function HeroText(text: any) {
     return ( 
         <Title>
-           {text.text}testing pull request
+           {text.text}testing continuous integration
         </Title>
      );
 }
