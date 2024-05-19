@@ -1,0 +1,16 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: building the docker images - frontend & backend
+      run: docker compose -f compose.dev.yml build
