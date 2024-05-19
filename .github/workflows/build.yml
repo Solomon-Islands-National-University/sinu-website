@@ -1,4 +1,4 @@
-name: build stage
+name: another test
 
 on:
   pull_request:
