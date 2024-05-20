@@ -18,6 +18,7 @@ services:
     build:
       context: ./sinuweb-frontend
       dockerfile: .docker/prod/Dockerfile
+    command: ["node", "server.js"]
     depends_on:
       - backend
 
@@ -28,11 +29,11 @@ services:
       context: ./sinuweb_hdl_cms
       dockerfile: Dockerfile
     environment:
-      - DB_NAME=testdb
-      - DB_USER=testuser
-      - DB_PASSWORD=somepass333
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
       - DEBUG=False
-      - CSRF_TRUSTED_ORIGINS=http://localhost
+      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS}
     volumes:
       - backend-static:/staticfiles
       - backend-media:/mediafiles
@@ -49,10 +50,9 @@ services:
     container_name: sinuweb-db
     image: postgres:16.3
     environment:
-      - POSTGRES_DB=testdb
-      - POSTGRES_USER=testuser
-      - POSTGRES_PASSWORD=somepass333
-      # - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - db-data:/var/lib/postgresql/data
 
