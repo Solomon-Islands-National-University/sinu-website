@@ -43,7 +43,7 @@ jobs:
       run: |
         echo "Starting frontend image build"
         docker buildx build \
-          --context ./sinuweb-frontend \
+          --build-context ./sinuweb-frontend \
           --file ./sinuweb-frontend/.docker/prod/Dockerfile \
           --tag sinuweb/nextjsfrontend:prod \
           --push .
