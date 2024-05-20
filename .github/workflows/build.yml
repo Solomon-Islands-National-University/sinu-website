@@ -40,12 +40,13 @@ jobs:
 
     # build and push frontend
     - name: Build and push frontend image
-      uses: docker/build-push-action@v5
-      with:
-        context: ./sinuweb-frontend
-        file: .docker/prod/Dockerfile
-        push: true
-        tags: sinuweb/nextjsfrontend:prod
+      run: |
+        echo "Starting frontend image build"
+        docker buildx build \
+          --context ./sinuweb-frontend \
+          --file ./sinuweb-frontend/.docker/prod/Dockerfile \
+          --tag sinuweb/nextjsfrontend:prod \
+          --push .
 
     # build and push backend
     - name: Build and push backend image
