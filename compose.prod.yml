@@ -18,6 +18,7 @@ services:
     build:
       context: ./sinuweb-frontend
       dockerfile: .docker/prod/Dockerfile
+    command: ["node", "server.js"]
     depends_on:
       - backend
 
@@ -52,7 +53,6 @@ services:
       - POSTGRES_DB=testdb
       - POSTGRES_USER=testuser
       - POSTGRES_PASSWORD=somepass333
-      # - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - db-data:/var/lib/postgresql/data
 
