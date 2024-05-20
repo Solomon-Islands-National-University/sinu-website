@@ -1,13 +1,11 @@
-name: Build and pushing images to repository
+name: Build and push images to GitHub Container Registry
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
     env:
       DB_NAME: db_wagtail
@@ -16,5 +14,30 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+    # Set up Docker Buildx (multi-platform support)
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    # Log in to GitHub Container Registry
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.ACCESS_TOKEN }}
+
     - name: building the docker images - frontend & backend
       run: docker compose -f compose.prod.yml build
+
+    # Build and push the Docker images
+    - name: Build and push the Docker images - frontend & backend
+      run: |
+        docker compose -f compose.prod.yml build
+        
+
+# docker tag wagtailbackend_frontend:latest $IMAGE_NAME/frontend:latest
+# docker tag wagtailbackend_backend:latest $IMAGE_NAME/backend:latest
+# docker push $IMAGE_NAME/frontend:latest
+# docker push $IMAGE_NAME/backend:latest
+        
