@@ -28,11 +28,11 @@ jobs:
         password: ${{ secrets.ACCESS_TOKEN }}
 
     # build app images - frontend & backend
-    - name: Build and push images from compose
+    - name: Build images from compose
       run: |
         docker compose -f compose.prod.yml build
 
     # push images to ghcr.io
-    - name: Build and push images from compose
+    - name: Push images from compose
       run: |
         docker compose -f compose.prod.yml push
