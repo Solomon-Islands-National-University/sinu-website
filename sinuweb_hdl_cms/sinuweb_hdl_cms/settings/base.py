@@ -53,9 +53,7 @@ INSTALLED_APPS = [
     "corsheaders",
 ]
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-]
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
 
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",

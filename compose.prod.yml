@@ -31,9 +31,17 @@ services:
       - DB_NAME=testdb
       - DB_USER=testuser
       - DB_PASSWORD=somepass333
+      - DEBUG=False
+      - CSRF_TRUSTED_ORIGINS=http://localhost
     volumes:
       - backend-static:/staticfiles
       - backend-media:/mediafiles
+    command: >
+      sh -c "
+      set -xe;
+      python manage.py migrate --noinput;
+      gunicorn --bind 0.0.0.0:8000 sinuweb_hdl_cms.wsgi:application
+      "
     depends_on:
       - db
 

@@ -35,11 +35,20 @@ services:
     build:
       context: ./sinuweb_hdl_cms
       dockerfile: Dockerfile
+    ports:
+      - 8000:8000
     env_file:
       - .env
     volumes:
       - backend-static:/staticfiles
       - backend-media:/mediafiles
+      - ./sinuweb_hdl_cms:/app
+    command: >
+      sh -c "
+      set -xe;
+      python manage.py migrate --noinput;
+      python manage.py runserver 0.0.0.0:8000
+      "
     depends_on:
       - db
 

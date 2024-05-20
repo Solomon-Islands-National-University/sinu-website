@@ -54,6 +54,6 @@ RUN python manage.py collectstatic --noinput --clear
 #   phase facilities of your hosting platform. This is used only so the
 #   Wagtail instance can be started with a simple "docker run" command.
 # Run migrations and then start Gunicorn
-CMD set -xe \
-    && python manage.py migrate --noinput \
-    && gunicorn --bind 0.0.0.0:8000 sinuweb_hdl_cms.wsgi:application
+# CMD set -xe \
+#     && python manage.py migrate --noinput \
+#     && gunicorn --bind 0.0.0.0:8000 sinuweb_hdl_cms.wsgi:application
