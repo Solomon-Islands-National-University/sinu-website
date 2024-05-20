@@ -27,19 +27,12 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.ACCESS_TOKEN }}
 
-    - name: Verify repository structure
-      run: |
-        echo "Listing root directory:"
-        ls -la
-        echo "Listing sinuweb-frontend directory:"
-        ls -la sinuweb-frontend
-        echo "Listing .docker/prod directory:"
-        ls -la sinuweb-frontend/.docker/prod
-        echo "Showing Dockerfile contents:"
-        cat sinuweb-frontend/.docker/prod/Dockerfile
-
-    # build and push frontend
+    # build app images - frontend & backend
     - name: Build and push images from compose
       run: |
         docker compose -f compose.prod.yml build
+
+    # push images to ghcr.io
+    - name: Build and push images from compose
+      run: |
         docker compose -f compose.prod.yml push
