@@ -35,6 +35,8 @@ jobs:
         ls -la sinuweb-frontend
         echo "Listing .docker/prod directory:"
         ls -la sinuweb-frontend/.docker/prod
+        echo "Showing Dockerfile contents:"
+        cat sinuweb-frontend/.docker/prod/Dockerfile
 
     # build and push frontend
     - name: Build and push frontend image
