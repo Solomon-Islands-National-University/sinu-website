@@ -40,6 +40,7 @@ services:
     volumes:
       - backend-static:/staticfiles
       - backend-media:/mediafiles
+      - ./sinuweb_hdl_cms:/app
     depends_on:
       - db
 
