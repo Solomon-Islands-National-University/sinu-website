@@ -44,4 +44,3 @@ jobs:
         file: Dockerfile
         push: true
         tags: sinuweb/wagtailbackend:prod
-        
