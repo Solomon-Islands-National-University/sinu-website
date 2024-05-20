@@ -24,7 +24,7 @@ jobs:
     - name: Build app images - frontend and backend
       run: |
         docker build ./sinuweb_hdl_cms -t ghcr.io/solomon-islands-national-university/website-wagtailbackend:latest
-        docker build  ./frontend -t ghcr.io/solomon-islands-national-university/website-nextjs:latest
+        docker build  ./sinuweb-frontend -t ghcr.io/solomon-islands-national-university/website-nextjs:latest
 
     # Login to ghcr.io
     - name: Log in to GitHub Container Registry (ghcr.io)
