@@ -39,20 +39,7 @@ jobs:
         cat sinuweb-frontend/.docker/prod/Dockerfile
 
     # build and push frontend
-    - name: Build and push frontend image
+    - name: Build and push images from compose
       run: |
-        echo "Starting frontend image build"
-        docker buildx build \
-          --build-context ./sinuweb-frontend \
-          --file ./sinuweb-frontend/.docker/prod/Dockerfile \
-          --tag sinuweb/nextjsfrontend:prod \
-          --push .
-
-    # build and push backend
-    - name: Build and push backend image
-      uses: docker/build-push-action@v5
-      with:
-        context: ./sinuweb_hdl_cms
-        file: Dockerfile
-        push: true
-        tags: sinuweb/wagtailbackend:prod
+        docker compose -f compose.prod.yml build
+        docker compose -f compose.prod.yml push
