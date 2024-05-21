@@ -21,13 +21,12 @@ WORKDIR /src
 COPY --from=deps /src/node_modules ./node_modules
 COPY . .
 
-ENV NODE_ENV development
+ENV ENV=development \
+    API=backend
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 RUN chown -R nextjs:nodejs /src
-
-
 
 EXPOSE 3000
 

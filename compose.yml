@@ -36,7 +36,7 @@ services:
       context: ./sinuweb_hdl_cms
       dockerfile: Dockerfile
     ports:
-      - 8000:8000
+      - 8000:80
     env_file:
       - .env
     volumes:
@@ -47,7 +47,7 @@ services:
       sh -c "
       set -xe;
       python manage.py migrate --noinput;
-      python manage.py runserver 0.0.0.0:8000
+      python manage.py runserver 0.0.0.0:80
       "
     depends_on:
       - db
