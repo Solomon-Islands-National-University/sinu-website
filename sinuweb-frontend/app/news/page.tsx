@@ -1,15 +1,18 @@
-import NewsHeader from "@/components/news-page/news-header";
 import NewsContent from "@/components/news-page/news-content";
 import NewsList from "@/components/news-page/news-list";
 import NewsFilter from "@/components/news-page/news-filter";
 import Link from "next/link";
 import Container from "@/ui/container";
+import PageHeader from "@/components/page-header";
 
 
 function NewsPage() {
     return ( 
         <>
-            <NewsHeader/>
+            <PageHeader 
+                title="News & Updates" 
+                subtitle="Read all the latest news and updates in and around the university" 
+            />
             <div className=" min-h-4 py-8 bg-[#f6f7f9] border-b border-b-slate-300 shadow-lg">
                 <Container>
                     <div className="flex justify-between px-44">

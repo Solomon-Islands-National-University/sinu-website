@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
-import News from "@/components/latest-news/news";
 
+// Fonts
+import { Raleway, Merriweather } from "next/font/google";
 
 const railway = Raleway({ subsets: ["latin"], weight: ["400","800"]});
+const merriweather = Raleway({ subsets: ["latin"], weight: ["400","800"]});
 
 export const metadata: Metadata = {
   title: "SINU - Solomon Islands National University",
@@ -23,7 +24,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
 
   return (
     <html lang="en">
-      <body className={railway.className}>
+      <body className={merriweather.className}>
         
         <Header/>
         {children}
