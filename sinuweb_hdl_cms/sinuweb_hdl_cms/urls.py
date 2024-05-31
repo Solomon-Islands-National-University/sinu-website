@@ -33,7 +33,7 @@ if settings.DEBUG:
 urlpatterns = urlpatterns + [
     
     path('api/v2/', api_router.urls),
-    path("graphql/", GraphQLView.as_view(graphiql=True, schema=schema)),
+    path("api/graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
