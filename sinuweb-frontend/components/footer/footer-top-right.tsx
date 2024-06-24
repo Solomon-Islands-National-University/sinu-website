@@ -1,28 +1,48 @@
-import fetchFooter from "@/lib/fetch-footer";
-import FooterLinkGroup from "./footer-link-group";
+import { gql } from '@apollo/client';
+import createApolloClient from '@/lib/apollo/client';
+import FooterLinkGroup from './footer-link-group';
+
+const fetchMenus = async() => {
+
+  const GET_LINK_GROUPS = gql`
+    query getLinkGroups {
+        footer {
+            linkGroups {
+                links {
+                    title
+                    url
+                    openNewTab
+                }
+                menuTitle
+            }
+        }
+    }
+  `;
+
+  const client = createApolloClient();
+  const res = await client.query({
+      query: GET_LINK_GROUPS
+  });
+  return res.data.footer.linkGroups;
+}
+
 
 async function FooterTopRight() {
 
-    const data = await fetchFooter();
-
-    let content = <div>Link groups here.</div>;
-
-    // Check if data is an empty object or if data.items is not an array
-    if (data) {
-        content = 
-            data.map((item: any) => (
-                <FooterLinkGroup group={item} key={item.id}/>
-            ))
-    }
-
-    return ( 
-        <div className="xl:flex  xl:flex-grow xl:justify-center ">
-
-            { content }
-
-
-        </div>
-     );
+  const menus = await fetchMenus();
+  
+  return ( 
+      <>
+      <div className="xl:flex  xl:flex-grow xl:justify-center ">
+          {menus.map((menu: any) => (
+          <FooterLinkGroup 
+            key={menu.title} 
+            menu={menu} 
+        />
+        ))}
+      </div>
+      </>
+  );
 }
 
 export default FooterTopRight;

@@ -1,17 +1,15 @@
 import graphene
-from graphene_django import DjangoObjectType
-from news.models import NewsPostPage
-
-
-class NewsPostType(DjangoObjectType):
-    class Meta:
-        model = NewsPostPage
-        fields = '__all__'
+from snippets.models import Footer, Header
+from snippets.graph_types import FooterType, HeaderType
 
 class Query(graphene.ObjectType):
-    all_news = graphene.List(NewsPostType)
-
-    def resolve_all_news(self, info, **kwargs):
-        return NewsPostPage.objects.all().live()
+    footer = graphene.Field(FooterType)
+    header = graphene.Field(HeaderType)
+    
+    def resolve_footer(self, info):
+        return Footer.objects.first()  
+    
+    def resolve_header(self, info):
+        return Header.objects.first() 
 
 schema = graphene.Schema(query=Query)

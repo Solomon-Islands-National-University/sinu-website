@@ -2,12 +2,9 @@ import NavbarMenu from "./navbar-menu";
 import items from "@/lib/fetch-nav-items";
 import QuickLinks from "./quick-links";
 
+function Navbar({expanded, navItems}: {expanded: any, navItems: any}) {
 
-
-function Navbar({expanded}: any) {
-
-    const navItems = items;
-    console.log(navItems);
+    // const navItems = items;
 
     return ( 
         <nav 
@@ -16,7 +13,7 @@ function Navbar({expanded}: any) {
                         bg-sinu-dark-green lg:bg-transparent text-white`}
             >
 
-            <NavbarMenu navItems={navItems}/>
+            <NavbarMenu items={navItems}/>
 
             <div className="block lg:hidden">
                 <QuickLinks/>

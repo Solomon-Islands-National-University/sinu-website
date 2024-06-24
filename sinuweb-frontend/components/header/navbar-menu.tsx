@@ -4,14 +4,15 @@ import NavItem from "./nav-item";
 import SearchItem from "./search-item";
 
 
-function NavbarMenu(props: any) {
+function NavbarMenu({items}: {items: any}) {
 
-    const [navItems, setNavItems] = useState(props.navItems);
+    const [navItems, setNavItems] = useState(items);
+    console.log(navItems[0]);
     
-    const handleNavItemClick = (navId: number) => {
+    const handleNavItemClick = (id: number) => {
         setNavItems(navItems.map((item: any) => ({
             ...item,
-            isActive: item.key === navId ? !item.isActive : false,
+            isActive: item.id === id ? !item.isActive : false,
         })))
     }
 
@@ -23,11 +24,11 @@ function NavbarMenu(props: any) {
             { navItems.map((item: any) => {
                 return (
                     <li 
-                        key={item.key}
+                        key={item.title}
                         className="flex-grow flex text-center lg:px-0 flex-col"
                     >
-                        <NavItem item={item} onNavItemClick={handleNavItemClick} />
-                        {item.isActive && <MegaMenu menuSections={item.menuSections} />}
+                        <NavItem item={item} onClick={handleNavItemClick} />
+                        {item.isActive && <MegaMenu menus={item.menus} />}
                     </li>
                 )}
             )} 

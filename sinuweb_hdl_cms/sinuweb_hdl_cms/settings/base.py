@@ -52,10 +52,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "corsheaders",
-    'graphene_django',
+    "grapple",
+    "graphene_django",
 ]
 
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
+
+CORS_ALLOWED_ORIGINS = [
+    "http://frontend",
+]
 
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -189,8 +194,12 @@ WAGTAILSEARCH_BACKENDS = {
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://localhost:8000"
 
-# # GraphQL
-# GRAPHENE = {
-#     'SCHEMA': 'api.schema.schema',
-# }
+
+
+# Grapple config:
+GRAPHENE = {
+    "SCHEMA": "api.schema.schema"
+}
+
+
 

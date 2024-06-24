@@ -5,7 +5,7 @@ import Logo from "@/components/header/logo";
 import { useState } from "react";
 
 
-function HeaderBottom() {
+function HeaderBottom({navItems}: {navItems: any}) {
 
     const [isExpanded, setIsExpanded] = useState(true);
 
@@ -21,7 +21,7 @@ function HeaderBottom() {
 
           <Logo/>
           <NavToggle onToggle={handleToggle}/>
-          <Navbar expanded={isExpanded}/>
+          <Navbar expanded={isExpanded} navItems={navItems}/>
           
 
       </div>

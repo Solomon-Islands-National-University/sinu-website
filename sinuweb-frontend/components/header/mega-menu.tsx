@@ -1,33 +1,33 @@
 import {ListMenuSection, GridMenuSection} from "@/ui/menu-section";
 
 
-type MegaMenuProps = {
-    menuSections?: {
-        listMenus: {
-            key: number, 
-            listMenuTitle: string, 
-            menuLinks: {
-                key: number, 
-                linkTitle: string, 
-                linkUrl: string}[]
-            }[],
-        gridMenus?: {
-            key: number,
-            gridMenuTitle: string,
-            grids: {
-                key: number,
-                gridTitle: string,
-                gridItems: {
-                    key: number,
-                    gridItemTitle: string,
-                    gridItemUrl: string,
-                }[]
-            }[]
-        }[],
-    },
-}
+// type MegaMenuProps = {
+//     menuSections?: {
+//         listMenus: {
+//             key: number, 
+//             listMenuTitle: string, 
+//             menuLinks: {
+//                 key: number, 
+//                 linkTitle: string, 
+//                 linkUrl: string}[]
+//             }[],
+//         gridMenus?: {
+//             key: number,
+//             gridMenuTitle: string,
+//             grids: {
+//                 key: number,
+//                 gridTitle: string,
+//                 gridItems: {
+//                     key: number,
+//                     gridItemTitle: string,
+//                     gridItemUrl: string,
+//                 }[]
+//             }[]
+//         }[],
+//     },
+// }
 
-const MegaMenu:React.FC<MegaMenuProps> = ({menuSections}) => {
+function MegaMenu({menus}: {menus: any}){
 
     return ( 
 
@@ -38,23 +38,23 @@ const MegaMenu:React.FC<MegaMenuProps> = ({menuSections}) => {
             >
     
 
-                {menuSections?.listMenus.map((listMenu) => 
+                {menus?.map((menu: any) => 
 
                     <ListMenuSection 
-                        key={listMenu.key}
-                        listMenuTitle={listMenu.listMenuTitle}
-                        menuLinks={listMenu.menuLinks}
+                        key={menu.menuTitle}
+                        menuTitle={menu.menuTitle}
+                        links={menu.links}
                     /> 
                 
                 )}
 
-                {menuSections?.gridMenus?.map((gridMenu) => 
+                {/* {menuSections?.gridMenus?.map((gridMenu) => 
                     <GridMenuSection
                         key={gridMenu.key}
                         gridMenuTitle={gridMenu.gridMenuTitle}
                         grids={gridMenu.grids}
                     />
-                )}
+                )} */}
 
             </div>
     
