@@ -22,8 +22,13 @@ jobs:
     # Build images
     - name: Build images
       run: |
-        docker build ./sinuweb_hdl_cms -t ghcr.io/solomon-islands-national-university/website-wagtailbackend:latest
-        docker build -f ./sinuweb-frontend/.docker/prod/Dockerfile ./sinuweb-frontend -t ghcr.io/solomon-islands-national-university/website-nextjsfrontend:latest
+        docker network create -d bridge sinuweb-net
+        docker buildx create --name cusbuilder --driver-opt network=sinuweb-net --use
+        docker compose -f compose.prod.yml build backend
+        docker compose -f compose.prod.yml up backend -d
+        docker compose -f compose.prod.yml build frontend
+        docker compose -f compose.prod.yml up frontend -d
+        docker compose -f compose.prod.yml up nginx -d
 
     # Login to ghcr.io
     - name: Login to ghcr.io
