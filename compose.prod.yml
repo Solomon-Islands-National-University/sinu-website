@@ -11,16 +11,22 @@ services:
       - backend-media:/mediafiles
     depends_on:
       - frontend
+    networks:
+      - sinuweb-net
 
   frontend:
     container_name: sinuweb-frontend
     image: sinuweb/nextjsfrontend:prod
     build:
       context: ./sinuweb-frontend
+      network: host
       dockerfile: .docker/prod/Dockerfile
-    command: ["node", "server.js"]
+    # command: ["node", "server.js"]
+    # command: ["npm", "run", "start"]
     depends_on:
       - backend
+    networks:
+      - sinuweb-net
 
   backend:
     container_name: sinuweb-backend
@@ -45,6 +51,8 @@ services:
       "
     depends_on:
       - db
+    networks:
+      - sinuweb-net
 
   db:
     container_name: sinuweb-db
@@ -55,8 +63,16 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - db-data:/var/lib/postgresql/data
+    networks:
+      - sinuweb-net
 
 volumes:
   backend-static:
   backend-media:
   db-data:
+
+networks:
+  sinuweb-net:
+    name: sinuweb-net
+    driver: bridge
+    external: true

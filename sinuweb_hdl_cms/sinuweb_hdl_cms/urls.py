@@ -12,7 +12,8 @@ from .api import api_router
 from django.urls import re_path
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
-from api.schema import schema
+from grapple import urls as grapple_urls
+
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -33,7 +34,8 @@ if settings.DEBUG:
 urlpatterns = urlpatterns + [
     
     path('api/v2/', api_router.urls),
-    path("api/graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
+    # path("api/graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
+    path("api/", include(grapple_urls)),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:

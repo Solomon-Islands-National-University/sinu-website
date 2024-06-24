@@ -2,7 +2,7 @@
 
 import django.db.models.deletion
 import modelcluster.fields
-import streams.blocks
+import blocks.blocks
 import wagtail.blocks
 import wagtail.fields
 from django.db import migrations, models
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(blank=True, editable=False, null=True)),
                 ('nav_item_title', models.CharField(help_text='Name of the top navbar menu item. (e.g. About Us)', max_length=255, verbose_name='Title')),
                 ('nav_subtitle', models.CharField(blank=True, help_text='add a short sentence that expands on the title (e.g. discover what we are about)', max_length=255, null=True, verbose_name='Subtitle')),
-                ('content', wagtail.fields.StreamField([('list_menu', wagtail.blocks.StructBlock([('menu_title', wagtail.blocks.CharBlock(help_text='The text the user sees on the link', max_length=150, required=True)), ('links', wagtail.blocks.ListBlock(streams.blocks.LinkBlock))])), ('link', wagtail.blocks.StructBlock([('link_text', wagtail.blocks.CharBlock(help_text='The text the user sees on the link', max_length=150, required=True)), ('destination', wagtail.blocks.StructBlock([('page', wagtail.blocks.PageChooserBlock(help_text='The destination page when this link is clicked', max_length=150)), ('external_url', wagtail.blocks.URLBlock(help_text='An external destination when this link is clicked', max_length=150))], help_text='Choose either a page or an external URL as the destination.', max_num=1, required=False))]))], blank=True, help_text='Build the dropdown menu', null=True)),
+                ('content', wagtail.fields.StreamField([('list_menu', wagtail.blocks.StructBlock([('menu_title', wagtail.blocks.CharBlock(help_text='The text the user sees on the link', max_length=150, required=True)), ('links', wagtail.blocks.ListBlock(blocks.blocks.LinkBlock))])), ('link', wagtail.blocks.StructBlock([('link_text', wagtail.blocks.CharBlock(help_text='The text the user sees on the link', max_length=150, required=True)), ('destination', wagtail.blocks.StructBlock([('page', wagtail.blocks.PageChooserBlock(help_text='The destination page when this link is clicked', max_length=150)), ('external_url', wagtail.blocks.URLBlock(help_text='An external destination when this link is clicked', max_length=150))], help_text='Choose either a page or an external URL as the destination.', max_num=1, required=False))]))], blank=True, help_text='Build the dropdown menu', null=True)),
                 ('header', modelcluster.fields.ParentalKey(on_delete=django.db.models.deletion.CASCADE, related_name='nav_items', to='snippets.header')),
             ],
             options={

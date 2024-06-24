@@ -41,5 +41,7 @@ typing_extensions==4.11.0
 tzdata==2023.4
 urllib3==2.2.0
 wagtail==6.0
+wagtail-grapple==0.25.1
+wagtail-headless-preview==0.8.0
 webencodings==0.5.1
 Willow==1.8.0

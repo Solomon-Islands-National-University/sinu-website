@@ -12,7 +12,10 @@ from .models import (
     Header,
 ) 
 
+
 class FooterCreateView(CreateView):
+    model = Footer
+    
     def form_valid(self, form):
         if Footer.objects.exists():
             messages.error(self.request, "You already have a Footer. There can only be one instance.")
@@ -29,16 +32,18 @@ class FooterViewSet(SnippetViewSet):
     
     panels = [
         FieldPanel("title"),
-        MultiFieldPanel([
-            InlinePanel(
-                relation_name="link_groups", 
-                max_num=4, 
-                label="link group", 
-                heading=" ",
-            )],
-            heading="Link Groups",
-        ),
+        FieldPanel("link_groups"),
+        # MultiFieldPanel([
+            # InlinePanel(
+            #     relation_name="link_groups", 
+            #     max_num=4, 
+            #     label="link group", 
+            #     heading=" ",
+            # )]#,
+        #     heading="Link Groups",
+        # ),
     ]
+    
 
 register_snippet(FooterViewSet)
 

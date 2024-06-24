@@ -6,9 +6,7 @@ import QuickCards from "@/components/quick-cards";
 import Discover from "@/components/discover";
 import FeesKeydates from "@/components/fees-keydates";
 
-
 export default function Home() {
-
 
   return (
     <>

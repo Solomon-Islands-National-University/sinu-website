@@ -3,46 +3,24 @@ from wagtail.models import Orderable
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.fields import StreamField
-from streams.blocks import (
-    LinkBlock,
-    ListMenuBlock,
-    NestedListMenuBlock,
-)
+from blocks.blocks import MenuBlock
 
 
 class Footer(ClusterableModel):
     """Footer model for storing the footer information"""
     
     title = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.title
-        
-
-class LinkGroupOrderable(Orderable):
-    """ A group of links in the footer."""
     
-    parent = ParentalKey("snippets.Footer",  related_name="link_groups")
-    
-    title = models.CharField(
-        max_length=200,
-        help_text='Add title (i.e. this would be the header title of the specified links)',
-        verbose_name="Title"
-    )
-    
-    content = StreamField([
-            ('link', LinkBlock()), 
+    link_groups = StreamField([
+            ('links', MenuBlock()),
         ],
-        help_text='Add links (i.e. links under this group)',
-        verbose_name="Links",
+        help_text='Build the dropdown menu',
         null=True,
         blank=True,
     )
-    
+
     def __str__(self):
         return self.title
-    
-    
 
 
 class Header(ClusterableModel):
@@ -73,15 +51,13 @@ class NavItemOrderable(Orderable):
         blank=True,
     )
     
-    content = StreamField([
-            ('list_menu', ListMenuBlock()),
-            ('nested_list_menu', NestedListMenuBlock()),
-            ('link', LinkBlock()), 
+    menus = StreamField([
+            ('list_menu', MenuBlock()),
         ],
         help_text='Build the dropdown menu',
         null=True,
         blank=True,
     )
-    
+
     def __str__(self):
         return self.title
