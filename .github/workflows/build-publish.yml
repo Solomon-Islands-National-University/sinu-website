@@ -24,13 +24,13 @@ jobs:
     # Create and use custom Builder
     - name: Create and use custom Buildx builder
       run: |
+        docker network create -d bridge sinuweb-net
         docker buildx create --name cusbuilder --driver-opt network=sinuweb-net --use
         docker buildx inspect --bootstrap
 
     # Build images
     - name: Build images
       run: |
-        docker network create -d bridge sinuweb-net
         docker compose -f compose.prod.yml up backend --build -d        
         docker compose -f compose.prod.yml up frontend --build -d
         docker compose -f compose.prod.yml up nginx -d
