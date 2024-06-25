@@ -17,13 +17,15 @@ jobs:
 
     # Set up Docker Buildx
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      uses: docker/setup-buildx-action@v3
+      with:
+        driver: docker-container
 
     # Build images
     - name: Build images
       run: |
         docker network create -d bridge sinuweb-net
-        docker buildx create --name cusbuilder --driver docker-container --driver-opt network=sinuweb-net --use
+        docker buildx create --name cusbuilder --driver-opt network=sinuweb-net --use
         docker compose -f compose.prod.yml up backend --build -d
         
         wget -qO- --retry-connrefused --waitretry=1 --timeout=5 -t 30 http://backend:8000
