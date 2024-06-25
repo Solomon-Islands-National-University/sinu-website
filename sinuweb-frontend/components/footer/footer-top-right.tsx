@@ -20,16 +20,25 @@ const fetchMenus = async() => {
   `;
 
   const client = createApolloClient();
-  const res = await client.query({
+  const{ data, loading, networkStatus } = await client.query({
       query: GET_LINK_GROUPS
   });
-  return res.data.footer.linkGroups;
+  const { footer } = data;
+  if (footer == null){
+    return null;
+  }
+  else {
+      return footer.linkGroups;
+  }
 }
 
 
 async function FooterTopRight() {
 
   const menus = await fetchMenus();
+  if (menus == null){
+    return <div>NO Footer</div>
+  }
   
   return ( 
       <>

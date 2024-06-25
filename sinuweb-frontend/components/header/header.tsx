@@ -27,16 +27,29 @@ const fetchNavItems = async() => {
     `;
   
     const client = createApolloClient();
-    const res = await client.query({
+    const { data, loading, networkStatus } = await client.query({
         query: GET_NAV_ITEMS
     });
-    return res.data.header.navItems;
+
+    const { header } = data;
+    
+    if (header == null){
+        return null;
+    }
+    else {
+        return header.navItems;
+    }
   }
   
 
 async function Header() {
 
     const navItems = await fetchNavItems();
+    
+    if (navItems == null){
+        return <div>NO NAVBAR MENU</div>
+    }
+
     let items: any = [];
     let x: number = 1;
     navItems.forEach((item:any) => {
