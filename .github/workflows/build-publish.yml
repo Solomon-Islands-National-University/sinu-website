@@ -1,4 +1,4 @@
-name: Build and publish images to ghcr.io
+name: Build and publish Backend to ghcr.io
 on:
   push:
     branches: [ "main" ]
@@ -21,20 +21,10 @@ jobs:
       with:
         driver: docker-container
 
-    # Create and use custom Builder
-    - name: Create and use custom Buildx builder
-      run: |
-        docker network create -d bridge sinuweb-net
-        docker buildx create --name cusbuilder --driver-opt network=sinuweb-net --use
-        docker buildx inspect --bootstrap
-
     # Build images
     - name: Build images
       run: |
-        docker compose -f compose.prod.yml up backend --build -d        
-        docker compose -f compose.prod.yml up frontend --build -d
-        docker compose -f compose.prod.yml up nginx -d
-
+        docker build ./sinuweb_hdl_cms -t ghcr.io/solomon-islands-national-university/website-wagtailbackend:latest
 
     # Login to ghcr.io
     - name: Login to ghcr.io
@@ -45,7 +35,6 @@ jobs:
         password: ${{ secrets.GH_PAT }}
 
     # push images to ghcr.io
-    - name: publish images
+    - name: publish backend image
       run: |
         docker push ghcr.io/solomon-islands-national-university/website-wagtailbackend:latest
-        docker push ghcr.io/solomon-islands-national-university/website-nextjsfrontend:latest
