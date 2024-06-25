@@ -26,10 +26,7 @@ jobs:
       run: |
         docker network create -d bridge sinuweb-net
         docker buildx create --name cusbuilder --driver-opt network=sinuweb-net --use
-        docker compose -f compose.prod.yml up backend --build -d
-        
-        wget -qO- --retry-connrefused --waitretry=1 --timeout=5 -t 30 http://backend:8000
-        
+        docker compose -f compose.prod.yml up backend --build -d        
         docker compose -f compose.prod.yml up frontend --build -d
         docker compose -f compose.prod.yml up nginx -d
 
