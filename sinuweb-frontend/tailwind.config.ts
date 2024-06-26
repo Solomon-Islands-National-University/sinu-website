@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontSize: {
+        'title': '3rem',
         'huge': '4rem',
         'massive': '6rem',
       },
