@@ -5,7 +5,7 @@ import matBg from '@/assets/mat-bg.svg';
 function CourseSearch() {
     return ( 
         <>
-        <section className="  relative flex flex-col justify-center  py-12 xl:py-20 z-10 xl:pt-[650px] xl:pb-36 ">
+        <section className="  relative flex flex-col justify-center  py-12 xl:py-20 z-10  xl:pb-36 ">
             
             {/* <Image
                 className="absolute w-full h-full bottom-0  bg-contain"
@@ -17,7 +17,7 @@ function CourseSearch() {
 
 
                 <h1 className="flex flex-col xl:flex-row text-3xl lg:text-5xl text-gradient bg-gradient-to-r from-[#22809E] via-[#1F4754] to-sinu-yellow xl:gap-x-4 xl:justify-start ">
-                    <span className="inline-block mb-4 ">Find a program thats right for you.
+                    <span className="inline-block mb-4 ">Discover the right degree for you
                     </span> 
                     
                 </h1>

@@ -1,6 +1,11 @@
+import { Raleway } from "next/font/google";
+
+const railway = Raleway({ subsets: ["latin"], weight: ["400","800"]});
+
 function Title({children}: any) {
     return (
-        <h1 className=" lg:ml-4 text-4xl lg:text-6xl font-bold leading-relaxed tracking-wider xl:text-7xl capitalize">
+        
+        <h1 className={`${railway.className} text-massive font-bold capitalize leading-3`}>
             {children}            
         </h1>
     );

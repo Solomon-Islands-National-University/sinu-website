@@ -12,12 +12,12 @@ export default function Home() {
     <>
       
       <Hero/>
-      <QuickCards/>
+      {/* <QuickCards/> */}
       <CourseSearch/>
-      <Discover/>
-      <FeesKeydates/>
-      <Events/>
-      <News/>  
+      {/* <Discover/> */}
+      {/* <FeesKeydates/> */}
+      {/* <Events/> */}
+      {/* <News/>   */}
       
     </>
   );
