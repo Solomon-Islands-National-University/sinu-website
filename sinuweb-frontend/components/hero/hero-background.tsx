@@ -1,14 +1,21 @@
+import Image from "next/image";
+import heroImage from '@/assets/hero-bg.jpg';
 import transparentImage from '@/assets/transparent-img.svg';
 import siMap from '@/assets/si-map.svg';
-import Image from "next/image";
 
 
 function HeroBackground() {
     
     return (  
         <>
+           <Image 
+                className="absolute hidden md:block bg-cover h-full  w-full object-cover"  
+                src={heroImage}
+                alt=""
+            />
+
             <Image 
-                className="absolute bg-cover h-full  w-full object-cover"  
+                className="hidden md:block absolute bg-cover h-full  w-full object-cover"  
                 src={transparentImage}
                 alt=""
             />

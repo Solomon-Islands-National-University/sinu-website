@@ -2,7 +2,8 @@ import HeaderTop from "./header-top";
 import HeaderBottom from "./header-bottom";
 import { gql } from '@apollo/client';
 import createApolloClient from '@/lib/apollo/client';
-
+import { Raleway } from "next/font/google";
+const railway = Raleway({ subsets: ["latin"], weight: ["400"]});
 
 const fetchNavItems = async() => {
 
@@ -60,8 +61,9 @@ async function Header() {
 
     return ( 
         <header
-            className="flex flex-col gap-y-8 
-                    bg-sinu-light-dark-green lg:bg-blue-gradient shadow-lg shadow-cyan-500/50"
+            className={`${railway.className} 
+                    flex flex-col gap-y-8 min-h-24 lg:min-h-44
+                    bg-sinu-light-dark-green lg:bg-blue-gradient shadow-lg shadow-cyan-500/50`}
         >
             <HeaderTop/>
             <HeaderBottom navItems={items}/>

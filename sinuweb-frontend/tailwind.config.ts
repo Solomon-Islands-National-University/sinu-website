@@ -8,6 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        'huge': '4rem',
+        'massive': '6rem',
+      },
+      height: {
+        'screen-minus-11rem': 'calc(100vh - 11rem)',
+        'screen-minus-6rem': 'calc(100vh - 6rem)',
+      },
       colors: {
         'sinu-yellow': '#F2E43A',
         'sinu-dark-green': '#1C3E49',
@@ -21,7 +29,7 @@ const config: Config = {
       },
       backgroundImage: {
         'blue-gradient': 'var(--blue-gradient)',
-        'hero-image': "url('../assets/woman-in-library.png')",
+        'hero-image': "url('../assets/hero-bg.jpg')",
       },
       borderWidth: {
         'thin': '1px',
@@ -51,6 +59,7 @@ const config: Config = {
       '3lg': '1398px',
       'xl': '1440px',
       '2xl': '1536px',
+      '3xl': '1836px',
     }
   },
   plugins: [],

@@ -10,11 +10,14 @@ async function HeroContent() {
     const heroParagraph = hero.hero_paragraph;
 
     return (
-        <>
-            <HeroText text={heroText} />
-            <HeroParagraph paragraph={heroParagraph} />
-            <HeroLinks />
-        </>
+        
+            <div className=" sm:gap-y-12 px-8 h-full w-screen  flex flex-col justify-center sm:justify-center lg:w-3/4 3xl:w-2/3 3xl:px-52 gap-y-16  ">
+
+                <HeroText text={heroText} />
+                <HeroParagraph paragraph={heroParagraph} />
+                <HeroLinks />
+
+            </div>
     )
 }
 
