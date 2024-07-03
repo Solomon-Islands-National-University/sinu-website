@@ -1,20 +1,22 @@
 import NewsContent from "@/components/news-page/news-content";
 import NewsFilter from "@/components/news-page/news-filter";
-import NewsPost from "@/components/news-page/news-post";
+import NewsPost from "@/components/news-post/news-post";
 import { getPost } from "@/lib/news";
+import { Suspense } from "react";
 
-async function NewsPostPage({params}: {params: {slug: string}}) {
+
+
+function Page({params}: {params: {slug: string}}) {
     
-    const post = await getPost(params.slug);
     
     return ( 
         <>
             <NewsContent>
                 <NewsFilter/>
-                <NewsPost post={post}/>
+                <NewsPost slug={params.slug}/>
             </NewsContent>
         </>
      );
 }
 
-export default NewsPostPage;
+export default Page;

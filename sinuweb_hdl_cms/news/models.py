@@ -6,12 +6,13 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
 from wagtail.fields import RichTextField
 from wagtail.api import APIField
-from wagtail.images.api.fields import ImageRenditionField
 from rest_framework.fields import DateField
 from bs4 import BeautifulSoup
-
-
 from news.serializers import NewsIndexChildPagesSerializer
+from grapple.models import (
+    GraphQLString,
+    GraphQLStreamfield,
+)
 
 
 class NewsIndexPage(Page):
@@ -44,11 +45,11 @@ class NewsIndexPage(Page):
         return self.get_children().type(NewsPostPage).public().live().order_by('-first_published_at')
     
     
-    
-
-
 class NewsPostPage(Page):
     """ News page """
+    
+    class Meta:
+        ordering = ['-date']
 
     custom_title = models.CharField(
         max_length=100,
@@ -83,6 +84,14 @@ class NewsPostPage(Page):
         FieldPanel('body'),
         FieldPanel('date'),
     ]
+    
+    # Note these fields below:
+    graphql_fields = [
+        GraphQLString("custom_title"),
+        GraphQLString("news_image"),
+        GraphQLStreamfield("body"),
+        GraphQLString("date"),
+    ]
 
     parent_page_types = ['news.NewsIndexPage']
 
@@ -103,8 +112,3 @@ class NewsPostPage(Page):
         brief_paragraph = self.body.split('</p>')[0] + '</p>'
         soup = BeautifulSoup(brief_paragraph, 'html.parser')
         return soup.get_text()
-    
-
-    
-    
-    

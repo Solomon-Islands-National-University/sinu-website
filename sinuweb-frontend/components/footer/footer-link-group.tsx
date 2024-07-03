@@ -2,8 +2,6 @@ import Link from "next/link";
 
 function FooterLinkGroup({menu}: any) {
     
-    console.log(menu.menuTitle)
-
     return ( 
         <div className="border-t xl:border-t-0 p-5 border-slate-500  xl:flex xl:flex-col xl:flex-grow xl:w-64 xl:pt-10">
                 

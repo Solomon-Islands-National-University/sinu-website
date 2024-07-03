@@ -4,9 +4,9 @@ import Link from "next/link";
 
 function NewsItem({item}: any) {
     
-    
+   
     return ( 
-        <Link href={item.url} className="flex gap-x-4 p-2 ">
+        <Link href={`news/${item.slug}`} className="flex gap-x-4 p-2 ">
         <div className="">
             <Image 
                 src={img} alt='' 
@@ -24,7 +24,7 @@ function NewsItem({item}: any) {
                 {item.title}
             </h6>
             <p className="py-4 text-gray-600">
-            {item.paragraph}
+            Sample body text.
             </p>
         </div>
     </Link>

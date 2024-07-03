@@ -200,6 +200,9 @@ WAGTAILADMIN_BASE_URL = "http://localhost:8000"
 GRAPHENE = {
     "SCHEMA": "api.schema.schema"
 }
-
+# GRAPHENE = {"SCHEMA": "grapple.schema.schema"}
+# GRAPPLE = {
+#     "APPS": ["news"],
+# }
 
 

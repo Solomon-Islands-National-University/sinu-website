@@ -31,7 +31,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
       <body className={` ${bebas.className} ${railway.className}`}>
         <Header/>
         {children}
-        {/* <Footer/>   */}
+        <Footer/>  
       </body>
     </html>
 

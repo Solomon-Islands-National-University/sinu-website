@@ -14,7 +14,7 @@ function NavItem({item, onClick}: {item: any, onClick:any}) {
         onClick(id);
     }
 
-    // console.log(item);
+    
 
     return ( 
         <button 

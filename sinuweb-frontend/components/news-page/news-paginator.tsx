@@ -4,17 +4,27 @@ import Link from 'next/link';
 import NewsButton from './news-button';
 
 
-function NewsPaginator() {
+function NewsPaginator({pageInfo}: {pageInfo: any}) {
 
     // @todo these values should be handed down through props, along with API urls.
-    const hasNext = true;
-    const hasPrevious = true;
-
+    let hasNext = false;
+    let hasPrevious = false;
+    
+    console.log(pageInfo)
+    if(pageInfo.hasNext){
+        console.log(`HAS NEXT PAGE: ${pageInfo.hasNextPage}`)
+        hasNext = true;
+    }
+    if(pageInfo.hasPrevious){
+        console.log(`HAS PREVIOUS PAGE: ${pageInfo.hasPreviousPage}`)
+        hasPrevious = true;
+    }
+    
     return ( 
         <div className=" flex justify-center mb-6 gap-x-2">
     
-               { hasPrevious && <NewsButton url={'/news/?page=2'} title={'previous'} />}
-               { hasNext && <NewsButton url={'/news/?page=2'} title={'next'} />}
+               { hasPrevious && <NewsButton toPage={pageInfo.currentPage - 1} title={'previous'} />}
+               { hasNext && <NewsButton toPage={pageInfo.currentPage + 1} title={'next'}  />}
                 
         </div>
      );

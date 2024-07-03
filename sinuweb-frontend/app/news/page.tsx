@@ -4,9 +4,11 @@ import NewsFilter from "@/components/news-page/news-filter";
 import Link from "next/link";
 import Container from "@/ui/container";
 import PageHeader from "@/components/page-header";
+import { Suspense } from "react";
 
 
-function NewsPage() {
+function NewsPage({searchParams}: {searchParams: any}) {
+    
     return ( 
         <>
             <PageHeader 
@@ -30,7 +32,9 @@ function NewsPage() {
             </div>
             <NewsContent>
                 <NewsFilter/>
-                <NewsList/>
+                <Suspense fallback={<p>cant load news list</p>}>
+                <NewsList pageParams={searchParams}/>
+                </Suspense>
             </NewsContent>
             
         </>
