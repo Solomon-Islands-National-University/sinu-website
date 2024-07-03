@@ -19,20 +19,64 @@ function RightChevronIcon(){
     )
 }
 
-function NewsButton({title, url}: {title: string, url: string}) {
+// async function getNextPage(){
+//     const response = await fetch("http://backend:8000/api/graphql/", {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({
+//           query: `
+//            query NewsNodes {
+//       newsNodes(first: 2 after: "YXJyYXljb25uZWN0aW9uOjE=") {
+//           edges {
+//               node {
+//                   title
+//                   body
+//                   date
+//                   id
+//                   slug
+//               }
+//           }
+//           pageInfo {
+//               hasNextPage
+//               hasPreviousPage
+//               startCursor
+//               endCursor
+//           }
+//       }
+//   }
+//           `,
+//         }),
+//         cache: 'no-store',
+//       });
+      
+//       const { data } = await response.json();
+//       console.log(data.newsNodes.edges);
+//       return data.newsNodes;  
+// }
+
+async function NewsButton({title, toPage}: {title: string, toPage: number}) {
 
     let isPrevious = false;
     let isNext = false;
+    let href = '';
 
-    if(title === 'previous')
+    if(title === 'previous'){
         isPrevious = true;
+        href = `/news?page=${toPage}`
+    }
+        
 
-    if(title === 'next')
+    if(title === 'next'){
         isNext = true;
+        href = `/news?page=${toPage}`
+    }
+        
 
     return (
         <Link 
-        href={url}
+        href={href}
         className="rounded-lg border-2 p-4 hover:text-white hover:border-transparent hover:bg-sinu-dark-green capitalize border-black font-bold flex gap-4 px-6"
         >
         

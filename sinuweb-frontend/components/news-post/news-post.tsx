@@ -6,18 +6,53 @@ import linkedInIcon from "@/assets/icons/linkedin.svg";
 import XIcon from "@/assets/icons/x-social-media-round-icon.svg";
 import newsImage from "@/assets/imgs/events/event1.jpg";
 import Image from "next/image";
+import { Suspense } from "react";
 
-async function NewsPost({post}: any) {
+const getPost = async({slug}: {slug: any}) => {
 
-    return ( 
+    console.log(`3. getPost Slug: ${slug}`)
+
+    const response = await fetch("http://backend:8000/api/graphql/", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+          query NewsItem {
+            newsItem(slug: "${slug}") {
+                customTitle
+                id
+                date
+                slug
+                body
+            }
+        }
+        `,
+      }),
+      cache: 'no-store',
+    });
+    
+    const { data } = await response.json();
+    console.log(`data returned: ${data}`)
+    return data.newsItem;
+
+}
+
+const Post = async({slug}: {slug: any}) => {
+
+    console.log(`2. Post Slug: ${slug}`)
+    const post = await getPost({slug});
+    
+    return (
         <div 
-            className="min-h-20 flex-1 p-6 bg-white flex flex-col gap-y-10 "
+            className="min-h-20 flex-1 p-6 bg-white flex flex-col gap-y-10 border-black border"
         >
 
             <div className="border-b-2  border-b-gray-300   flex flex-col gap-y-6 py-6 relative">
 
                 <NewsTitle>
-                    {post.title}
+                    {post.customTitle}
                 </NewsTitle>
 
                 <span className="h-1 rounded-lg w-1/5 bg-slate-400"></span>
@@ -86,6 +121,21 @@ async function NewsPost({post}: any) {
             </div>
 
         </div>
+    )
+}
+
+
+
+function NewsPost({slug}: any) {
+
+    console.log(`1. NewsPost Slug: ${slug}`)
+
+    return ( 
+        <>
+            <Suspense fallback={<p>Cant Load Post</p>}>
+                <Post slug={slug}/>
+            </Suspense>
+        </>
      );
 }
 
